@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">The MLExplorer</string>
+
+    <!--
+    - For registration & Login screen
+    -->
+    <string name="email_id_info">Enter your email id*</string>
+    <string name="new_password">Enter your new password*</string>
+    <string name="confirm_password">Enter your confirm password*</string>
+    <string name="password">Enter your password*</string>
+    <string name="have_an_account">Already have an account!</string>
+    <string name="create_account">Don\'t have an account?</string>
 </resources>
