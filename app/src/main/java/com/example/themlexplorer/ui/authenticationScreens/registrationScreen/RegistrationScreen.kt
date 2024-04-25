@@ -32,7 +32,8 @@ import com.example.themlexplorer.components.VerticalSpace
 
 @Composable
 fun RegistrationScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    loginAccount: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -138,7 +139,8 @@ fun RegistrationScreen(
                 VerticalSpace(space = 10)
 
                 /**
-                 * If user have an account, then navigate to login screen when user clicks on it.
+                 *  Login
+                 *  If user have an account, then navigate to login screen when user clicks on it.
                  */
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -149,7 +151,7 @@ fun RegistrationScreen(
                         text = stringResource(id = R.string.have_an_account),
                         style = MaterialTheme.typography.bodyLarge
                     )
-                    TextButton(onClick = { /*TODO*/ }) {
+                    TextButton(onClick = loginAccount) {
                         Text(
                             text = "Login",
                             style = MaterialTheme.typography.bodyLarge

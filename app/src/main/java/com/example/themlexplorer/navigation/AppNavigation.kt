@@ -23,16 +23,49 @@ fun AppNavigation(
             route = Destinations.PreAuth.route
         ){
             composable(route = Destinations.PreAuth.LoginScreen.route){
-                LoginScreen(modifier = Modifier.fillMaxSize())
+                LoginScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    createAccount = {
+                        navigateAndPopUp(
+                            navController,
+                            desiredNavigationDestination = Destinations.PreAuth.RegistrationScreen.route,
+                            popUpDestination = Destinations.PreAuth.LoginScreen.route
+                        )
+                    }
+                )
             }
 
             composable(route = Destinations.PreAuth.RegistrationScreen.route){
-                RegistrationScreen()
+                RegistrationScreen(
+                    loginAccount = {
+                        navigateAndPopUp(
+                            navController,
+                            Destinations.PreAuth.LoginScreen.route,
+                            Destinations.PreAuth.RegistrationScreen.route
+                        )
+                    }
+                )
             }
         }
 
         composable(route = Destinations.PostAuth.route){
             PostAuthScreen(modifier = Modifier.fillMaxSize())
+        }
+    }
+}
+
+/**
+ *  In this function we not only navigating to desired destination but also removing the that destination from
+ *  which we are navigating.
+ */
+private fun navigateAndPopUp(
+    navController: NavHostController,
+    desiredNavigationDestination: String,
+    popUpDestination: String
+){
+    navController.navigate(desiredNavigationDestination){
+        popUpTo(popUpDestination){
+            inclusive = true
         }
     }
 }

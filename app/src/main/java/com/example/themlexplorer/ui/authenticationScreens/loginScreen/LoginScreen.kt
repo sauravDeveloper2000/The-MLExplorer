@@ -33,7 +33,8 @@ import com.example.themlexplorer.components.VerticalSpace
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    createAccount: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -128,7 +129,8 @@ fun LoginScreen(
                     VerticalSpace(space = 20)
 
                     /**
-                     * If user don't have an account, then navigate them to registration screen
+                     *  Create
+                     *  If user don't have an account, then navigate them to registration screen
                      */
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -139,7 +141,7 @@ fun LoginScreen(
                             text = stringResource(id = R.string.create_account),
                             style = MaterialTheme.typography.bodyLarge
                         )
-                        TextButton(onClick = { /*TODO*/ }) {
+                        TextButton(onClick = createAccount) {
                             Text(
                                 text = "Create",
                                 style = MaterialTheme.typography.bodyLarge
