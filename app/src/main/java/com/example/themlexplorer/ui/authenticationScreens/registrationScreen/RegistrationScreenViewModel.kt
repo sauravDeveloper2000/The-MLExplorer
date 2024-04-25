@@ -4,7 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.themlexplorer.repositorySection.accountRepository.AccountRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -18,7 +21,9 @@ sealed interface UserActionOnRegistrationScreen{
 }
 
 @HiltViewModel
-class RegistrationScreenViewModel @Inject constructor() : ViewModel() {
+class RegistrationScreenViewModel @Inject constructor(
+    private val accountRepository: AccountRepository
+) : ViewModel() {
 
     var userEmail by mutableStateOf("")
         private set
@@ -33,5 +38,29 @@ class RegistrationScreenViewModel @Inject constructor() : ViewModel() {
             is UserActionOnRegistrationScreen.OnEmailIdClick -> this.userEmail = event.emailId
             is UserActionOnRegistrationScreen.OnNewPasswordClick -> this.newPassword = event.newPassword
         }
+    }
+
+    fun createAccountWithEmailAndPassword(
+        inSuccess: () -> Unit,
+        inFailure: (String) -> Unit
+    ){
+        viewModelScope.launch {
+            accountRepository.createAccount(
+                email = userEmail,
+                password = newPassword,
+                onSuccess = {
+                    inSuccess()
+                },
+                onFailure = {
+                    inFailure(it)
+                }
+            )
+        }
+    }
+
+    fun resetStates(){
+        userEmail = ""
+        newPassword = ""
+        confirmPassword = ""
     }
 }

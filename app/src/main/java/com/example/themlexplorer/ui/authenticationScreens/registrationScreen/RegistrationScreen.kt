@@ -1,5 +1,6 @@
 package com.example.themlexplorer.ui.authenticationScreens.registrationScreen
 
+import android.app.ProgressDialog.show
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -88,8 +89,10 @@ fun RegistrationScreen(
                     /**
                      * Email-Id Validation check
                      */
-                    if (registrationScreenViewModel.userEmail.isNotEmpty()){
-                        if (Patterns.EMAIL_ADDRESS.matcher(registrationScreenViewModel.userEmail).matches()){
+                    if (registrationScreenViewModel.userEmail.isNotEmpty()) {
+                        if (Patterns.EMAIL_ADDRESS.matcher(registrationScreenViewModel.userEmail)
+                                .matches()
+                        ) {
                             emailFieldError = false
                             emailFieldErrorCause = null
                         } else {
@@ -104,9 +107,9 @@ fun RegistrationScreen(
                     /**
                      * NewPassword and Confirm Password validation
                      */
-                    if (registrationScreenViewModel.newPassword.isNotEmpty() && registrationScreenViewModel.confirmPassword.isNotEmpty()){
-                        if ((registrationScreenViewModel.newPassword.length in 6..15) && (registrationScreenViewModel.confirmPassword.length in 6..15)){
-                            if (registrationScreenViewModel.newPassword == registrationScreenViewModel.confirmPassword){
+                    if (registrationScreenViewModel.newPassword.isNotEmpty() && registrationScreenViewModel.confirmPassword.isNotEmpty()) {
+                        if ((registrationScreenViewModel.newPassword.length in 6..15) && (registrationScreenViewModel.confirmPassword.length in 6..15)) {
+                            if (registrationScreenViewModel.newPassword == registrationScreenViewModel.confirmPassword) {
                                 newPasswordError = false
                                 confirmPasswordError = false
 
@@ -120,25 +123,40 @@ fun RegistrationScreen(
                                 confirmPasswordErrorCause = "Passwords are not matching"
                             }
                         } else {
-                            newPasswordError = registrationScreenViewModel.newPassword.length !in 6..15
-                            newPasswordErrorCause = if (registrationScreenViewModel.newPassword.length !in 6..15) "Password Length should be in b|w 6-15 " else null
+                            newPasswordError =
+                                registrationScreenViewModel.newPassword.length !in 6..15
+                            newPasswordErrorCause =
+                                if (registrationScreenViewModel.newPassword.length !in 6..15) "Password Length should be in b|w 6-15 " else null
 
-                            confirmPasswordError = registrationScreenViewModel.confirmPassword.length !in 6..15
-                            confirmPasswordErrorCause = if (registrationScreenViewModel.confirmPassword.length !in 6..15) "confirm password length should be in b|w 6-15" else null
+                            confirmPasswordError =
+                                registrationScreenViewModel.confirmPassword.length !in 6..15
+                            confirmPasswordErrorCause =
+                                if (registrationScreenViewModel.confirmPassword.length !in 6..15) "confirm password length should be in b|w 6-15" else null
                         }
-                    }else{
+                    } else {
                         newPasswordError = registrationScreenViewModel.newPassword.isEmpty()
-                        newPasswordErrorCause = if (registrationScreenViewModel.newPassword.isEmpty()) "Please enter your new password" else null
+                        newPasswordErrorCause =
+                            if (registrationScreenViewModel.newPassword.isEmpty()) "Please enter your new password" else null
 
                         confirmPasswordError = registrationScreenViewModel.confirmPassword.isEmpty()
-                        confirmPasswordErrorCause = if (registrationScreenViewModel.confirmPassword.isEmpty()) "Please enter your confirm password" else null
+                        confirmPasswordErrorCause =
+                            if (registrationScreenViewModel.confirmPassword.isEmpty()) "Please enter your confirm password" else null
                     }
-                  if (newPasswordError || confirmPasswordError || emailFieldError){
-                      Toast.makeText(context, "Validation Failed!!", Toast.LENGTH_SHORT).show()
-                      return@ExtendedFloatingActionButton
-                  } else {
-                      Toast.makeText(context, "Validation Succeeded :)", Toast.LENGTH_SHORT).show()
-                  }
+
+                    if (newPasswordError || confirmPasswordError || emailFieldError) {
+                        Toast.makeText(context, "Validation Failed!!", Toast.LENGTH_SHORT).show()
+                        return@ExtendedFloatingActionButton
+                    } else {
+                        registrationScreenViewModel.createAccountWithEmailAndPassword(
+                            inSuccess = {
+                                Toast.makeText(context, "Successfully Created :)", Toast.LENGTH_SHORT).show()
+                                registrationScreenViewModel.resetStates()
+                            },
+                            inFailure = {
+                                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                            }
+                        )
+                    }
                 }
             ) {
                 Icon(
