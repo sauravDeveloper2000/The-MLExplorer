@@ -72,6 +72,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // More material icon dependency
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+
     // Firebase BoM and other dependencies like Authentication and crashlytics.
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-auth")
