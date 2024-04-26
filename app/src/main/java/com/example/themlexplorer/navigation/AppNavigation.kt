@@ -10,7 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.themlexplorer.ui.authenticationScreens.loginScreen.LoginScreen
 import com.example.themlexplorer.ui.authenticationScreens.registrationScreen.RegistrationScreen
-import com.example.themlexplorer.ui.postAuth.PostAuthScreen
+import com.example.themlexplorer.ui.europeLandmarkRecognizer.EuropeLandmarkRecognizer
+import com.example.themlexplorer.ui.homeScreen.HomeScreen
 
 @Composable
 fun AppNavigation(
@@ -48,8 +49,17 @@ fun AppNavigation(
             }
         }
 
-        composable(route = Destinations.PostAuth.route){
-            PostAuthScreen(modifier = Modifier.fillMaxSize())
+        composable(route = Destinations.HomeScreen.route) {
+            HomeScreen(
+                modifier = Modifier.fillMaxSize(),
+                navigateToEuropeLandmarkRecognizerScreen = {
+                    navController.navigate(Destinations.EuropeLandmarkRecognizerScreen.route)
+                }
+            )
+        }
+
+        composable(route = Destinations.EuropeLandmarkRecognizerScreen.route) {
+            EuropeLandmarkRecognizer(modifier = Modifier.fillMaxSize())
         }
     }
 }

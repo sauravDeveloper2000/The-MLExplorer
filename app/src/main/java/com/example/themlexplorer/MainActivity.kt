@@ -7,17 +7,12 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.themlexplorer.navigation.AppNavigation
 import com.example.themlexplorer.navigation.Destinations
 import com.example.themlexplorer.navigation.StartDestinationViewModel
-import com.example.themlexplorer.ui.authenticationScreens.loginScreen.LoginScreen
-import com.example.themlexplorer.ui.authenticationScreens.registrationScreen.RegistrationScreen
 import com.example.themlexplorer.ui.theme.TheMLExplorerTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -51,7 +46,7 @@ class MainActivity : ComponentActivity() {
         firebaseAuth.addAuthStateListener {
             val currentUser = it.currentUser
             if (currentUser != null){
-                startDestinationViewModel._startingDestination.value = Destinations.PostAuth
+                startDestinationViewModel._startingDestination.value = Destinations.HomeScreen
             } else{
                 startDestinationViewModel._startingDestination.value = Destinations.PreAuth
             }

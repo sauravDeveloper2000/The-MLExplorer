@@ -7,6 +7,7 @@ sealed class Destinations(val route: String) {
         data object RegistrationScreen: Destinations(route = "RegistrationScreen")
     }
 
-    data object PostAuth: Destinations(route = "PostAuth")
-
+    data object HomeScreen : Destinations(route = "HomeScreen")
+    data object EuropeLandmarkRecognizerScreen :
+        Destinations(route = "EuropeLandmarkRecognizerScreen")
 }
