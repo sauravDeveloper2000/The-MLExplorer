@@ -1,6 +1,5 @@
 package com.example.themlexplorer.ui.authenticationScreens.registrationScreen
 
-import android.app.ProgressDialog.show
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -149,7 +148,11 @@ fun RegistrationScreen(
                     } else {
                         registrationScreenViewModel.createAccountWithEmailAndPassword(
                             inSuccess = {
-                                Toast.makeText(context, "Successfully Created :)", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Successfully Created :)",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 registrationScreenViewModel.resetStates()
                             },
                             inFailure = {

@@ -1,5 +1,6 @@
 package com.example.themlexplorer.navigation
 
+import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,11 +12,14 @@ import androidx.navigation.navigation
 import com.example.themlexplorer.ui.authenticationScreens.loginScreen.LoginScreen
 import com.example.themlexplorer.ui.authenticationScreens.registrationScreen.RegistrationScreen
 import com.example.themlexplorer.ui.europeLandmarkRecognizer.EuropeLandmarkRecognizer
+import com.example.themlexplorer.ui.europeLandmarkRecognizer.domain.Classification
 import com.example.themlexplorer.ui.homeScreen.HomeScreen
 
 @Composable
 fun AppNavigation(
     startingDestination: Destinations,
+    controller: LifecycleCameraController,
+    classification: List<Classification>,
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(navController = navController, startDestination = startingDestination.route) {
@@ -59,7 +63,11 @@ fun AppNavigation(
         }
 
         composable(route = Destinations.EuropeLandmarkRecognizerScreen.route) {
-            EuropeLandmarkRecognizer(modifier = Modifier.fillMaxSize())
+            EuropeLandmarkRecognizer(
+                modifier = Modifier.fillMaxSize(),
+                controller = controller,
+                classification = classification
+            )
         }
     }
 }
