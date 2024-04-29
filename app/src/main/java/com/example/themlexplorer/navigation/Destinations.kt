@@ -10,4 +10,7 @@ sealed class Destinations(val route: String) {
     data object HomeScreen : Destinations(route = "HomeScreen")
     data object EuropeLandmarkRecognizerScreen :
         Destinations(route = "EuropeLandmarkRecognizerScreen")
+
+    data object ObjectDetectionAndTrackingScreen :
+        Destinations(route = "ObjectDetectionAndTrackingScreen")
 }

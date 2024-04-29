@@ -25,7 +25,8 @@ import com.example.themlexplorer.components.VerticalSpace
 fun HomeScreen(
     modifier: Modifier,
     homeScreenViewModel: HomeScreenViewModel = hiltViewModel(),
-    navigateToEuropeLandmarkRecognizerScreen: () -> Unit
+    navigateToEuropeLandmarkRecognizerScreen: () -> Unit,
+    navigateToObjectDetectionScreen: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -59,6 +60,23 @@ fun HomeScreen(
             }
 
             VerticalSpace(space = 20)
+
+            /**
+             *  Object Detection and Tracking
+             */
+            Text(
+                text = "Explore Object Detection and Tracking",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Button(
+                shape = RoundedCornerShape(20),
+                onClick = navigateToObjectDetectionScreen
+            ) {
+                Text(text = "Explore")
+            }
+
+            VerticalSpace(space = 20)
+
 
             Button(
                 shape = RoundedCornerShape(20),

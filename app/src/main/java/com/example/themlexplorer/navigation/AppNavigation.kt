@@ -14,6 +14,7 @@ import com.example.themlexplorer.ui.authenticationScreens.registrationScreen.Reg
 import com.example.themlexplorer.ui.europeLandmarkRecognizer.EuropeLandmarkRecognizer
 import com.example.themlexplorer.ui.europeLandmarkRecognizer.domain.Classification
 import com.example.themlexplorer.ui.homeScreen.HomeScreen
+import com.example.themlexplorer.ui.objectDetection.ObjectDetectionResultScreen
 
 @Composable
 fun AppNavigation(
@@ -53,21 +54,37 @@ fun AppNavigation(
             }
         }
 
+        /**
+         *  HomeScreen
+         */
         composable(route = Destinations.HomeScreen.route) {
             HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 navigateToEuropeLandmarkRecognizerScreen = {
                     navController.navigate(Destinations.EuropeLandmarkRecognizerScreen.route)
+                },
+                navigateToObjectDetectionScreen = {
+                    navController.navigate(Destinations.ObjectDetectionAndTrackingScreen.route)
                 }
             )
         }
 
+        /**
+         *  Euro Landmark Recognition Screen.
+         */
         composable(route = Destinations.EuropeLandmarkRecognizerScreen.route) {
             EuropeLandmarkRecognizer(
                 modifier = Modifier.fillMaxSize(),
                 controller = controller,
                 classification = classification
             )
+        }
+
+        /**
+         * ObjectDetection Screen
+         */
+        composable(route = Destinations.ObjectDetectionAndTrackingScreen.route) {
+            ObjectDetectionResultScreen(modifier = Modifier.fillMaxSize())
         }
     }
 }
