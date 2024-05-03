@@ -1,7 +1,7 @@
 
 ## The MLExplorer
 
-The MLExplorer is an Machine Learning based app, in which user can recognize Europian Landmarks and can do Object Detection and Tracking.
+The MLExplorer is an Machine Learning based app, in which user can recognize European Landmarks and can do Object Detection and Tracking.
 ## Tech Stack
 
 #### Security🔐
