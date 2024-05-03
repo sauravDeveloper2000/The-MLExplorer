@@ -60,7 +60,7 @@ https://github.com/sauravDeveloper2000/The-MLExplorer/assets/153507758/fd300e7d-
 
 
 
-## Other Information
+## Contribution and Naming Idea
 
 - Now this app is not open for further contribution.
 - And the Why its name is "The MLExplorer". Because the main motive behind developing this app is that I want to explore the ML field, I want to get an idea, an learning that how to integrate an Pre-Train model into an Android App. And what I can do with these models.
