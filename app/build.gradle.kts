@@ -101,6 +101,15 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.0")
     implementation("org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0")
     implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
+
+    // MediaPipe dependencies.
+    implementation("com.google.mediapipe:tasks-vision:0.20230731")
+
+    val accompanistPermissionsVersion = "0.23.1"
+    implementation("com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion")
+
+    val exoPlayerVersion = "2.18.1"
+    implementation("com.google.android.exoplayer:exoplayer:$exoPlayerVersion")
 }
 
 // Allow references to generated code

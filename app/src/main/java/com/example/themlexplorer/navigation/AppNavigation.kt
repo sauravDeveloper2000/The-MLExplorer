@@ -14,13 +14,15 @@ import com.example.themlexplorer.ui.authenticationScreens.registrationScreen.Reg
 import com.example.themlexplorer.ui.europeLandmarkRecognizer.EuropeLandmarkRecognizer
 import com.example.themlexplorer.ui.europeLandmarkRecognizer.domain.Classification
 import com.example.themlexplorer.ui.homeScreen.HomeScreen
-import com.example.themlexplorer.ui.objectDetection.ObjectDetectionResultScreen
+import com.example.themlexplorer.ui.objectDetection.ObjectDetectionScreen
 
 @Composable
 fun AppNavigation(
     startingDestination: Destinations,
     controller: LifecycleCameraController,
     classification: List<Classification>,
+    threshold: Float,
+    maxResults: Int,
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(navController = navController, startDestination = startingDestination.route) {
@@ -84,7 +86,11 @@ fun AppNavigation(
          * ObjectDetection Screen
          */
         composable(route = Destinations.ObjectDetectionAndTrackingScreen.route) {
-            ObjectDetectionResultScreen(modifier = Modifier.fillMaxSize())
+            ObjectDetectionScreen(
+                modifier = Modifier.fillMaxSize(),
+                threshold = threshold,
+                maxResults = maxResults
+            )
         }
     }
 }
