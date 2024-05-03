@@ -28,7 +28,7 @@ The MLExplorer is an Machine Learning based app, in which user can recognize Eur
 ## Models:
 
 ### Euro Landmark Recognition 
-- For europian landmark recognition I have integerated the tensorflow lite model which classifies or recognizes the europian landmark. 
+- For european landmark recognition I have integerated the tensorflow lite model which classifies or recognizes the european landmark. 
 - And if you want to know more here's the link - 
     https://www.kaggle.com/models/google/landmarks/tfLite/classifier-europe-v1/1?tfhub-redirect=true
 
