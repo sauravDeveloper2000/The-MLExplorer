@@ -14,7 +14,10 @@ The MLExplorer is an Machine Learning based app, in which user can recognize Eur
 - Implement JetPack Compose Navigation Library to handle app Navigation, make app multi screen level.
 
 #### UI
-- Built the UI using JetPack Compose toolkit adhered by Material 3 guidelines. 
+- Built the UI using JetPack Compose toolkit adhered by Material 3 guidelines.
+
+#### Architecture🏗️
+- Built upon MVVM architecture causing maintainability, reusability and testability.
 
 #### Language 
 - Kotlin to built backend logic.
@@ -23,6 +26,7 @@ The MLExplorer is an Machine Learning based app, in which user can recognize Eur
 
 #### Other Tech Stack
 - Implemented CameraX Library to access Device Camera component.
+- Implement Kotlin Coroutines .
 
 
 ## Models:
